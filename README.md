@@ -6,7 +6,7 @@ This repository contains SQL scripts and instructions for creating and analyzing
 
 - PostgreSQL installed
 - Access to `psql` command-line tool
-- CSV data files for bulk uploading: `region.csv`, `sales_rep.csv`, `accounts.csv`, `web_events.csv`, `orders.csv` (refer to zip folder in repo)
+- CSV data files for bulk uploading: `region.csv`, `sales_rep.csv`, `accounts.csv`, `web_events.csv`, `orders.csv` (refer to dataset folder in repo)
 
 ## Database Creation
 
@@ -66,10 +66,19 @@ CREATE TABLE ORDERS (
     POSTER_AMT_USD FLOAT,
     TOTAL_AMT_USD FLOAT
 );
+```
 
 ## Bulk Uploading Data
 
-Bulk upload data from CSV files into the corresponding tables using the `psql` command.
+Bulk upload data from CSV files into the corresponding tables using the following `psql` commands.
+
+```sql
+\copy REGION FROM '/path/to/region.csv' WITH DELIMITER ',' CSV HEADER;
+\copy SALES_REP FROM '/path/to/sales_rep.csv' WITH DELIMITER ',' CSV HEADER;
+\copy ACCOUNTS FROM '/path/to/accounts.csv' WITH DELIMITER ',' CSV HEADER;
+\copy WEB_EVENTS FROM '/path/to/web_events.csv' WITH DELIMITER ',' CSV HEADER;
+\copy ORDERS FROM '/path/to/orders.csv' WITH DELIMITER ',' CSV HEADER;
+```
 
 ## Analytical Tasks
 
