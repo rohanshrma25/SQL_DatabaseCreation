@@ -16,13 +16,13 @@ To create the database and tables, use the provided SQL scripts.
 -- Create the DWH database
 CREATE DATABASE DWH;
 
--- Create the REGION table
+-- Create necessary tables
+
 CREATE TABLE REGION (
     ID INT PRIMARY KEY,
     NAME VARCHAR
 );
 
--- Create the SALES_REP table
 CREATE TABLE SALES_REP (
     ID INT PRIMARY KEY,
     NAME VARCHAR,
@@ -30,7 +30,6 @@ CREATE TABLE SALES_REP (
     FOREIGN KEY (REGION_ID) REFERENCES REGION(ID)
 );
 
--- Create the ACCOUNTS table
 CREATE TABLE ACCOUNTS (
     ID INT PRIMARY KEY,
     NAME VARCHAR,
@@ -42,7 +41,6 @@ CREATE TABLE ACCOUNTS (
     FOREIGN KEY (SALES_REP_ID) REFERENCES SALES_REP(ID)
 );
 
--- Create the WEB_EVENTS table
 CREATE TABLE WEB_EVENTS (
     ID INT PRIMARY KEY,
     ACCOUNT_ID INT,
@@ -51,7 +49,6 @@ CREATE TABLE WEB_EVENTS (
     CHANNEL VARCHAR
 );
 
--- Create the ORDERS table
 CREATE TABLE ORDERS (
     ID INT PRIMARY KEY,
     ACCOUNT_ID INT,
@@ -72,7 +69,7 @@ CREATE TABLE ORDERS (
 
 Bulk upload data from CSV files into the corresponding tables using the following `psql` commands.
 
-```sql
+```
 \copy REGION FROM '/path/to/region.csv' WITH DELIMITER ',' CSV HEADER;
 \copy SALES_REP FROM '/path/to/sales_rep.csv' WITH DELIMITER ',' CSV HEADER;
 \copy ACCOUNTS FROM '/path/to/accounts.csv' WITH DELIMITER ',' CSV HEADER;
