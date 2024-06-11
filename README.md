@@ -1,16 +1,71 @@
-# Data Warehouse (DWH) Project
+# Data Warehouse creation Project
 
-This repository contains SQL scripts and instructions for creating and analyzing a data warehouse (DWH) using PostgreSQL. The project involves creating a set of tables to manage regions, sales representatives, accounts, web events, and orders. Additionally, the project includes several analytical tasks to generate insights from the data.
+This repository contains SQL scripts and instructions for creating and analyzing a data warehouse (dwh) using PostgreSQL. The project involves creating a set of tables to manage regions, sales representatives, accounts, web events, and orders. Additionally, the project includes several analytical tasks to generate insights from the data.
 
 ## Prerequisites
 
 - PostgreSQL installed
 - Access to `psql` command-line tool
-- CSV data files for bulk uploading: `region.csv`, `sales_rep.csv`, `accounts.csv`, `web_events.csv`, `orders.csv`
+- CSV data files for bulk uploading: `region.csv`, `sales_rep.csv`, `accounts.csv`, `web_events.csv`, `orders.csv` (refer to zip folder in repo)
 
 ## Database Creation
 
 To create the database and tables, use the provided SQL scripts.
+
+```sql
+-- Create the DWH database
+CREATE DATABASE DWH;
+
+-- Create the REGION table
+CREATE TABLE REGION (
+    ID INT PRIMARY KEY,
+    NAME VARCHAR
+);
+
+-- Create the SALES_REP table
+CREATE TABLE SALES_REP (
+    ID INT PRIMARY KEY,
+    NAME VARCHAR,
+    REGION_ID INT,
+    FOREIGN KEY (REGION_ID) REFERENCES REGION(ID)
+);
+
+-- Create the ACCOUNTS table
+CREATE TABLE ACCOUNTS (
+    ID INT PRIMARY KEY,
+    NAME VARCHAR,
+    WEBSITE VARCHAR,
+    LAT FLOAT,
+    LONG FLOAT,
+    PRIMARY_POC VARCHAR,
+    SALES_REP_ID INT,
+    FOREIGN KEY (SALES_REP_ID) REFERENCES SALES_REP(ID)
+);
+
+-- Create the WEB_EVENTS table
+CREATE TABLE WEB_EVENTS (
+    ID INT PRIMARY KEY,
+    ACCOUNT_ID INT,
+    FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNTS(ID),
+    OCCURED_AT TIMESTAMP,
+    CHANNEL VARCHAR
+);
+
+-- Create the ORDERS table
+CREATE TABLE ORDERS (
+    ID INT PRIMARY KEY,
+    ACCOUNT_ID INT,
+    FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNTS(ID),
+    OCCURED_AT TIMESTAMP,
+    STANDARD_QTY INT,
+    GLOSS_QTY INT,
+    POSTER_QTY INT,
+    TOTAL INT,
+    STANDARD_AMOUNT_USD FLOAT,
+    GLOSS_AMT_USD FLOAT,
+    POSTER_AMT_USD FLOAT,
+    TOTAL_AMT_USD FLOAT
+);
 
 ## Bulk Uploading Data
 
