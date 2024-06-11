@@ -22,7 +22,9 @@ Bulk upload data from CSV files into the corresponding tables using the `psql` c
 
 Join the `SALES_REP` and `ACCOUNTS` tables to retrieve sales representatives along with the accounts they are assigned to. Calculate the row number of each account per sales representative.
 
-![image](https://github.com/rohanshrma25/SQL_DatabaseCreation/assets/143126097/206722a5-e168-49ba-a006-f68368a71900)
+<figure>
+  <img src="https://github.com/rohanshrma25/SQL_DatabaseCreation/assets/143126097/206722a5-e168-49ba-a006-f68368a71900" alt="Task 1" style="width:500px">
+</figure>  
 
 ### Task 2: Yearly Revenue Percentage and Rank by Sales Representative
 
