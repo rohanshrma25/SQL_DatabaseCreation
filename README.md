@@ -10,7 +10,7 @@ This repository contains SQL scripts and instructions for creating and analyzing
 
 ## Database Creation
 
-To create the database and tables, use the provided SQL scripts.
+To create the database and tables, following SQL scripts are used.
 
 ```sql
 -- Create the DWH database
